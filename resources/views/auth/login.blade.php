@@ -36,15 +36,14 @@
             @if (Route::has('password.request'))
             <x-link
                 :href="route('password.request')">
-                Forgot your password?
+                {{__('Forgot your password?')}}
             </x-link>
             @endif
 
             <x-link
                 :href="route('register')">
-                Create account
+                {{__('Create account')}}
             </x-link>
-
         </div>
 
         <x-primary-button class="w-full justify-center">

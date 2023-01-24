@@ -15,6 +15,21 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+        
+        <!-- Role -->
+        <div class="mt-4">
+            <x-input-label for="role" :value="__('What is your role in DevJobs?')" />
+            <select
+                name="role"
+                id="role"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
+            >
+            <option disabled selected hidden>{{__('-- Choose a role --')}}</option>
+            <option value="1">{{__('Developer - To look for a job')}}</option>
+            <option value="2">{{__('Recruiter - To recruit developers')}}</option>
+            </select>
+            <x-input-error :messages="$errors->get('role')" class="mt-2" />
+        </div>
 
         <!-- Password -->
         <div class="mt-4">
@@ -39,14 +54,15 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
+        <div class="flex my-2 justify-end">
+            <x-link
+                :href="route('login')">
+                {{__('Already registered?')}}
+            </x-link>
         </div>
+        
+        <x-primary-button class="w-full justify-center">
+            {{ __('Register') }}
+        </x-primary-button>
     </form>
 </x-guest-layout>
