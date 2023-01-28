@@ -1,36 +1,55 @@
-<form action="" class="md:w-1/2 space-y-5">
+<form action="" class="md:w-1/2 space-y-5" wire:submit.prevent='createVacancy'>
     <div>
         <x-input-label for="title" :value="__('Vacancy title')" />
         <x-text-input
             id="title"
             class="block mt-1 w-full"
             type="text"
-            name="title"
+            wire:model="title"
             :value="old('title')"
             placeholder="Vacancy title"
         />
+
+        @error('title')
+            <livewire:show-alert :message="$message"/>
+        @enderror
+
     </div>
 
     <div>
         <x-input-label for="payment" :value="__('Monthly payment')" />
         <select
-            name="payment"
+            wire:model="payment"
             id="payment"
             class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
         >
-
+            <option disabled selected hidden>{{__('-- Select payment --')}}</option>
+                @foreach ($payments as $payment)
+                    <option value="{{ $payment->id }}">{{$payment->payment}}</option>
+                @endforeach
         </select>
+
+        @error('payment')
+            <livewire:show-alert :message="$message"/>
+        @enderror
     </div>
 
     <div>
         <x-input-label for="category" :value="__('Category')" />
         <select
-            name="category"
+            wire:model="category"
             id="category"
             class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
         >
-
+            <option disabled selected hidden>{{__('-- Select category --')}}</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{__($category->category)}}</option>
+                @endforeach
         </select>
+
+        @error('category')
+            <livewire:show-alert :message="$message"/>
+        @enderror
     </div>
 
     <div>
@@ -39,10 +58,14 @@
             id="company"
             class="block mt-1 w-full"
             type="text"
-            name="company"
+            wire:model="company"
             :value="old('company')"
             placeholder="Company name, e.g. Meta, Netflix, Uber"
         />
+
+        @error('company')
+            <livewire:show-alert :message="$message"/>
+        @enderror
     </div>
 
     <div>
@@ -51,21 +74,28 @@
             id="last_day"
             class="block mt-1 w-full"
             type="date"
-            name="last_day"
+            wire:model="last_day"
             :value="old('last_day')"
         />
+
+        @error('last_day')
+            <livewire:show-alert :message="$message"/>
+        @enderror
     </div>
 
     <div>
         <x-input-label for="description" :value="__('Job Description')" />
         <textarea
-            name="description" 
+            wire:model="description" 
             id="description"
             placeholder="General job description..."
             class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full h-72"
         >
 
         </textarea>
+        @error('description')
+            <livewire:show-alert :message="$message"/>
+        @enderror
     </div>
 
     <div>
@@ -74,8 +104,11 @@
             id="image"
             class="block mt-1 w-full"
             type="file"
-            name="image"
+            wire:model="image"
         />
+        @error('image')
+            <livewire:show-alert :message="$message"/>
+        @enderror
     </div>
 
     <x-primary-button class="justify-center">
