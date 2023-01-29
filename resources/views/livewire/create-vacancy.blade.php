@@ -23,7 +23,7 @@
             id="payment"
             class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
         >
-            <option disabled selected hidden>{{__('-- Select payment --')}}</option>
+            <option hidden selected>{{__('-- Select payment --')}}</option>
                 @foreach ($payments as $payment)
                     <option value="{{ $payment->id }}">{{$payment->payment}}</option>
                 @endforeach
@@ -41,7 +41,7 @@
             id="category"
             class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
         >
-            <option disabled selected hidden>{{__('-- Select category --')}}</option>
+            <option hidden selected>{{__('-- Select category --')}}</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{__($category->category)}}</option>
                 @endforeach
@@ -105,7 +105,15 @@
             class="block mt-1 w-full"
             type="file"
             wire:model="image"
+            accept="image/*"
         />
+
+        <div class="my-5 w-80">
+            @if($image)
+                <img src="{{ $image->temporaryUrl() }}">
+            @endif
+        </div>
+
         @error('image')
             <livewire:show-alert :message="$message"/>
         @enderror
