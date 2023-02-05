@@ -7,11 +7,13 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+
+            @if (session()->has('message'))
+                <div class="uppercase border border-green-400 bg-green-200 text-green-600 font-bold p-2 my-3 text-sm">
+                    {{__(session('message'))}}
+                </div>0
+            @endif
+            <livewire:show-vacancies />
         </div>
     </div>
 </x-app-layout>

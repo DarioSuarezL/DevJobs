@@ -61,5 +61,11 @@ class CreateVacancy extends Component
             'image' => $data['image'],
             'user_id' => auth()->user()->id,
         ]);
+
+        //crear mensaje
+        session()->flash('message','The vacancy has been successfully published');
+
+        //redireccionar
+        return redirect()->route('vacancy.index');
     }
 }
