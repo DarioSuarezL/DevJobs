@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
 class VacancyController extends Controller
@@ -54,9 +55,12 @@ class VacancyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Vacancy $vacancy)
     {
-        //
+        $this->authorize('update',$vacancy);
+        return view('vacancies.edit',[
+            "vacancy" => $vacancy,
+        ]);
     }
 
     /**

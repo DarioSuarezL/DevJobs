@@ -11,7 +11,7 @@
             @if (session()->has('message'))
                 <div class="uppercase border border-green-400 bg-green-200 text-green-600 font-bold p-2 my-3 text-sm">
                     {{__(session('message'))}}
-                </div>0
+                </div>
             @endif
             <livewire:show-vacancies />
         </div>

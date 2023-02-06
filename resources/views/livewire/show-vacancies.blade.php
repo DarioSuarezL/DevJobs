@@ -17,7 +17,7 @@
             >Job applicants</a>
 
             <a
-                href=""
+                href="{{route('vacancy.edit',$vacancy->id)}}"
                 class="bg-indigo-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center"
             >Edit</a>
 
