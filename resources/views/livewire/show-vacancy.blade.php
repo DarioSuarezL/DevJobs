@@ -42,5 +42,11 @@
             </p>
         </div>
     @endguest
+    
+    @auth
+        @cannot('create', App\Models\Vacancy::class)
+            <livewire:apply-vacancy />
+        @endcannot
+    @endauth
 
 </div>

@@ -19,6 +19,7 @@ class VacancyPolicy
     public function viewAny(User $user)
     {
         //
+        return $user->role === 2;
     }
 
     /**
@@ -42,6 +43,7 @@ class VacancyPolicy
     public function create(User $user)
     {
         //
+        return $user->role === 2;
     }
 
     /**
