@@ -1,16 +1,26 @@
 <div class="bg-gray-100 p-5 mt-10 flex flex-col justify-center items-center">
     <h3 class="text-center text-2xl font-bold my-4">{{ __('Apply for this vacancy') }}</h3>
-    <form wire:submit.prevent='submit' class="w-96 mt-5">
-        <div class="mb-4">
-            <x-input-label for="cv" :value="__('CV (Curriculum vitae in PDF format)')" />
-            <x-text-input id="cv" type="file" accept=".pdf" class="block mt-1 w-full" wire:model="cv"/>
-        </div>
-        @error('cv')
-            <livewire:show-alert :message="$message" />
-        @enderror
+    <p class="text-center text-gray-600">{{ __('Please, upload your CV in PDF format') }}</p>
 
-        <x-primary-button class="my-5">
-            {{ __('Apply') }}
-        </x-primary-button>
-    </form>
+    @if (session()->has('message'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative my-5">
+            <strong class="font-bold">{{ __('Success!') }}</strong>
+            <span class="block sm:inline">{{ session('message') }}</span>
+        </div>
+    @else
+        <form wire:submit.prevent='submit' class="w-96 mt-5">
+            <div class="mb-4">
+                <x-input-label for="cv" :value="__('CV (Curriculum vitae in PDF format)')" />
+                <x-text-input id="cv" type="file" accept=".pdf" class="block mt-1 w-full" wire:model="cv"/>
+            </div>
+            @error('cv')
+                <livewire:show-alert :message="$message" />
+            @enderror
+
+            <x-primary-button class="my-5">
+                {{ __('Apply') }}
+            </x-primary-button>
+        </form>
+    @endif
+
 </div>
