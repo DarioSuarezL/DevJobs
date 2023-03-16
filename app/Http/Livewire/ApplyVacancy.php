@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Vacancy;
+use App\Notifications\NewCandidate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -37,6 +38,9 @@ class ApplyVacancy extends Component
 
         // Show success message
         session()->flash('message', 'Your application has been submitted successfully, good luck!');
+
+        // Send notification to the recruiter
+        $this->vacancy->recruiter->notify(new NewCandidate($this->vacancy->id, $this->vacancy->title, auth()->user()->id));
 
         // Redirect to home page
         return redirect()->back();
