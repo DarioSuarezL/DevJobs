@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,7 @@ Route::get('/vacancies/create', [VacancyController::class, 'create'])->middlewar
 Route::get('/vacancies/{vacancy}/edit', [VacancyController::class, 'edit'])->middleware(['auth', 'verified'])->name('vacancy.edit');
 Route::get('/vacancies/{vacancy}', [VacancyController::class, 'show'])->name('vacancy.show');
 
+// Notifications
+Route::get('/notifications', NotificationController::class)->middleware(['auth', 'verified'])->name('notifications');
 
 require __DIR__.'/auth.php';

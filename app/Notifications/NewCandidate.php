@@ -42,7 +42,7 @@ class NewCandidate extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('/candidates/'.$this->candidate_id);
+        $url = url('/notifications');
 
         return (new MailMessage)
                     ->line('You have a new candidate for your vacancy on DevJobs!')
