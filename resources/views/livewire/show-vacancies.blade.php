@@ -13,9 +13,12 @@
 
             <div class="flex flex-col md:flex-row gap-3 items-stretch mt-5 md:mt-0">
                 <a
-                    href=""
+                    href="{{route('candidate.index', $vacancy)}}"
                     class="bg-slate-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center"
-                >Job applicants</a>
+                >
+                    {{ $vacancy->candidates->count() }}
+                    Candidates
+                </a>
 
                 <a
                     href="{{route('vacancy.edit',$vacancy->id)}}"
